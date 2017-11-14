@@ -1,0 +1,13 @@
+# モデル名
+ja:
+  activerecord:
+    models:
+      talk: 話題
+
+# モデルの属性名
+ja:
+  activerecord:
+    attributes:
+      talk:
+          title: 議題
+        content: 内容
