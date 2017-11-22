@@ -8,6 +8,6 @@ ja:
 ja:
   activerecord:
     attributes:
-      talk:
-          title: 議題
+      talks:
+        title:   議題
         content: 内容
