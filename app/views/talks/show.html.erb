@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @talk.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @talk.content %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @talk.summary %>
+  <%  if @talk.summary.nil? %>なし<% end %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @talk.status %>
+</p>
+
+<p>
+  <strong>Due_Date:</strong>
+  <%= @talk.due_date %>
+</p>
+
+<%= link_to 'Edit', edit_talk_path(@talk) %> |
+<%= link_to 'Back', talks_path %>
