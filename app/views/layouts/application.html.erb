@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Photogram</title>
+  <title>talk_killer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +9,13 @@
 <body>
 <header>
   <ul>
+    <li><%= link_to 'アカウント情報変更', edit_user_registration_path %></li>
+    <li><%= link_to 'ホーム'      ,       root_path  %></li>
+    <li><%= link_to 'トーク一覧'  ,       talks_path %></li>
+    <li><%= link_to 'タスク一覧'  ,       tasks_path %></li>
+    <li><%= link_to 'ユーザー一覧',       users_path %></li>
+    <li><%= link_to 'メッセージ', conversations_path %></li>
+    <li><%= link_to 'トーク作成', new_talk_path %></li>
     <% if user_signed_in? %>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
     <% else %>
@@ -16,6 +23,7 @@
       <li><%= link_to 'サインアップ', new_user_registration_path %></li>
     <% end %>
   </ul>
+  
   <section class="main-header">
     <p class="flash"><%= notice %><%= alert %></p>
   </section>

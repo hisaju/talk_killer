@@ -19,6 +19,7 @@
 - エラーメッセージとフラッシュメッセージが適切に表示されること
 - 例外処理を行うこと
 - 適切に日本語化すること
+-- ja.ymlの作成
 
 [TODO]
 * gem install bundler
@@ -124,16 +125,334 @@ c9 open config/environments/development.rb
 > BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
 [SEE ALSO:https://diver.diveintocode.jp/textbooks/18]
 
-[DONE]-----------------------------------------------
 
-[TODO]-----------------------------------------------
+[Change Git Remote]----------------------------------
 git remote rm origin
 git remote add origin git@github.com:yuji91/XXX.git
+[heroku setup]---------------------------------------
+heroku login
+heroku create [AppName]
+
+[DONE]-----------------------------------------------
+
+[DOING]----------------------------------------------
+・SNSLogin
+・Rails Generate
+-p option DRYRUN
+https://qiita.com/zaru/items/cde2c46b6126867a1a64
+https://techracho.bpsinc.jp/shibuya/2014_07_24/18388
+
+11/22
+[Goal 1/5] --> talkの作成および編集、削除
+[Goal 2/5] --> Todoの作成および編集、削除
+[Goal 3/5] --> Messageの作成および編集、削除
+[Goal 4/5] --> Headerの作成および編集、削除
+[Goal 5/5] --> Homeの作成
+
+11/22
+[Goal 1/5] --> talkの作成および編集、削除
+2.0h 全体作成
+1.5h Status管理したい
+1.0h 全体修正
+
+index.html
+- 関係者、TalkMemberの追加
+- Title,ContentへのValidation
+- I18n
+- ContentのFormサイズ
+- Indexで長いTitleを縮小
+
+Edit.html
+<%= render 'form' %>
+- Use Template　--> create時にあってもよい
+- Template Type --> Contentの初期値として用意すれば足りる？
+- Add Summary   --> editにのみあるべき？
+- Contentの編集 --> 作成者にのみ許可すべき？
+
+
+[Goal 1/5] --> talkの作成および編集、削除
+rails generate scaffold Talk title:string content:string summary:string template:string status:integer -p
+
+
+
+[注意]
+・ja.ymlはインデントずれるとエラーになる
+・DBカラム名はsnake_case
+https://qiita.com/genzouw/items/35022fa96c120e67c637
+・カラム追加時はStrongParameterに追記しないと値が入力、更新されない
+・enum利用時はViewのFormでデフォルトで''がつくため、Number_fieldではなくselectにする
+http://www.tom08.net/entry/2016/07/12/223131
+http://www.techscore.com/blog/2014/03/07/rails-4-1-0-active-record-enums/
+http://tech.misoca.jp/entry/2015/08/10/132419
+https://qiita.com/100010/items/a306b79307395e70e71f
+
+https://qiita.com/mochikana/items/d31645ff7d51bedc6e84
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, Talk.statuses.keys.to_a, {}, class: "form-control" %>
+
+  [#試行錯誤  
+    <%= f.collection_select :status class: "form-control" %>
+    <%= f.number_field :status %>
+    <%= f.select :status, Talk.statuses.keys :class "form-control"%>
+    <%= f.select :skill_list, 
+    options_from_collection_for_select(Project.tag_counts_on(:skills)
+    .order(:name), "id", "name"), {},
+    :multiple=> true,:validate=> true,:class=> 'form-control' %>
+  ]
+  </div>
+
+・enumで定義する文字列は、他のenumで定義してはならない
+
+[TODO_MUST]
+・messageが二重に表示されている
+・indexにContent,Summary,Templateが表示されている（SummaryのみOK?）
+・ViewでのI18n対応
+I18n.t("talk_status.#{@talk.status}")
+
+[TODO_WANT]
+・不要なファイルの削除
+asset
+jbuilder
+test_unit
+・erb to slim
+https://qiita.com/Yahagi_pg/items/03eb2c5c5c2b529a16f7
+http://marketing-web.hatenablog.com/entry/
+https://qiita.com/mr-myself/items/6d53d18ebfdf956de97d
+
+・Array便利メソッド
+https://qiita.com/pekepek/items/55ac235a36d15ede0d90
+
+11/22
+[Goal 2/5] --> Todoの作成および編集、削除
+0.5h
+rails generate scaffold Task title:string status:integer due_date:date event:boolean done:boolean
+add parent_task_id
+
+add enum to app/model/task.rb
+
+[Goal 3/5] --> Messageの作成および編集、削除
+0.5h
+rails g controller Conversations index create
+rails g controller Messages index create
+rails g model Conversation sender_id:integer recipient_id:integer
+rails g model Message body:text conversation:references user:references read:boolean
+
+11/24
+0.5h
+User一覧、詳細画面の作成
+
+0.5h
+Comment作成
+rails g model Comment user:references talk:references content:text
+rails g controller Comments create
+
+0.5h
+SighUpできない
+https://qiita.com/ikedahidenori/items/66c2ea4d2c5205d809f0
+
+0.5h
+CommentAjax
+
+0.5h Start Bootstrap
+rails generate bootstrap:install static
+
+rails g migration AddOmniauthColumnsToUsers uid provider image_url
+rails g controller users::OmniauthCallbacks
+rails g controller users::registrations
+rails generate uploader Avatar
+rails g migration add_avatar_to_users avatar:string
+
+rails g migration AddUserIdToTalks user_id:integer
+
+0.5h
+Header
+
+1.5h
+Presentation作成
+
+Summary作成
+rails g model Summary user:references talk:references content:text
+rails g controller Summaries index edit
+
+1.0h
+comments.each
+summaries.each
+
+11/27
+【重要】
+1.0h
+・要約
+ - true時にリンク作成
+ -- show
+ -- index
+ 
+ 要約の作成方法
+ - showからリンク作成
+
+1.0h
+ 要約の表示方法
+ - summary.html.erb
+ - JavaScript
+ - partial
+
+[未実施]
+・要約の編集権限
+・view - 作成日、更新日をタイトル、期限と同じ行に出力したい
+・対応期日が設定されていないときにindexで通知する必要ある？
+・要約がないときにindexで通知する必要ある？
+・indexから要約の内容が見れなくても、右の詳細からshowに飛べば見られる
+   --> indexで要約内容を出力する重要度は低め？
+・Home画面で要約の有無表示、リンク
+・いいね機能
+   -->いいねが全員から取得できたらクローズする
+
+---
+<div id="summaries_area">
+    [要約]
+    <%= render partial: 'summaries/index', locals: { summaries: @summaries, talk: @talk } %>
+  </div>
+  <% if @talk.summaries.nil? %>
+    <%= render partial: 'summaries/form', locals: { summary: @summary, talk: @talk } %>
+  <% end %>
+</div>
+
+<p>
+  <%  if @talk.summary.nil? %>
+  <%= form_for(@talk) do |f| %>
+    <div class="field">
+      <%= f.label :summary %><br>
+      <%= f.text_field :summary %>
+    </div>
+    <div class="actions"><%= f.submit %></div>
+  <% end %>
+  <% else %>
+    [要約]<%= @talk.summary %>
+  <% end %>
+</p>
+---
+talk.rb
+    enum status:    %i(urgent important propose notice closed)
+    enum templates: %i(announce discussion question debate)
+ーーー
+ 
+・リプライ
+ - リプライIDの取得
+ - 表示の変更
+ - 親削除時の対応
+ 
+ リプライ用のテーブル作成？
+ リプライのリンク
+ リプライ内容を投稿しても何も起こらない
+ 
+1.0h 表示
+[デグレード]
+コメントフォームに最後の@commentの内容が入ってしまう
+投稿すると内容を書き換えてしまう
+
+Reply作成
+rails g model Reply user:references talk:references comment:references content:text
+rails g controller Replies index edit
+ 
+・多対多
+ - コメントモデルを使う？
+
+・layout
+ - Bootstrap
+
+
+【補足】
+画像登録
+イベント
+クローズ
+ソート
+表示上限、リンク
+コンテクストサイズ
+通知
+
+日本語に統一
+コード規約
+
+テンプレート
+
+[要約]
+作成日時
+更新日時
+いいね
+---
+config/routes.rb
+deviseを最初に持ってくること
+---
+  def show
+    @comment = @talk.comments.build
+    @comments = @talk.comments
+    @summary = @talk.summaries.build
+    @summaries = @talk.summaries
+  end
+  
+  comments.each
+  @comments
+  
+  summaries.each
+  @summaries
+---
+<div id="comments_area">
+    <%= render partial: 'comments/index', locals: { comments: @comments, talk: @talk } %>
+  </div>
+  <%= render partial: 'comments/form', locals: { comment: @comment, talk: @talk } %>
+  <% if current_user.id == @talk.user_id %>
+    <%= link_to '編集', edit_talk_path(@talk) %> |
+  <% end %>
+</div>
+
+renderしたら処理終わるので、編集リンクはコンパイルされない
+---
+
+[TODO]-----------------------------------------------
+title not null
+talk
+task
+
+index 0件時の表示
+
+SighUp後の挙動、ページ遷移
+
+app/view/messages/index.html
+0件時にメッセージ表示ができていない
+ <% if @messages.count == 0 %>
+    <%= 'メッセージはありません' %>
+  <% end %>
+  
+ユーザー一覧からメッセージ作成をできるようにしたい
+
+タスク、トーク０件時の表示
+Status選択時のセルの大きさ
+
+ユーザー一覧で画像が表示されない
+ユーザー一覧画面をメッセージ画面に統合する？
+ユーザー、一言あってもいいかも
+画像小さすぎ
+Home画面、Max５~１０件
+Home画面から詳細へのリンク
+アカウント情報変更でfが未定義のエラー
 
 [SNS Login]------------------------------------------
 [SEE ALSO:https://diver.diveintocode.jp/textbooks/19]
 
-[heroku setup]---------------------------------------
+talk_killer_Development
+256669738194032
+3202b7c7e6dd9da3bda86b1a9ad716a1
+
+talk_killer_Production
+1074452582697261
+d3c21c31e12c4157ae3a40bfb2d2b21d
+
+talk_killer_Production
+Consumer Key (API Key)	
+v8EN96YEWFdMwFYzCjpzudekj
+Consumer Secret (API Secret)	
+FMfr4vWEsuwhVawA3yQPM1AKxu368fEDXGGXuLUdJ2RKtruX85
+
 
 [Mailer]---------------------------------------------
 [SEE ALSO:https://diver.diveintocode.jp/textbooks/16]
@@ -152,12 +471,14 @@ Cloud9をお使いの方は本番環境のみで登録をお願いします。(2
 --------------------------------------------------------------------------------
 [rails g]
 
-rails g model picture caption:text user:references
-rails generate migration add_picture_to_pictures picture:string
+rails g model talk title:text user:references
+rails generate migration add_talk_to_pictures picture:string
 mount_uploader :picture, PictureUploader
 
 user.rb
-has_many :pictures, dependent: :destroy
+has_many :talks
+
+ ,dependent: :destroy
 
 rake db:migrate
 

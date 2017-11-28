@@ -1,0 +1,20 @@
+<%= form_for([talk,summary], remote: true) do |f| %>
+  <% if summary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= summary.errors.count %>件のエラーがあります。</h2>
+
+      <ul>
+      <% summary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :talk_id %>
+  <div class="field">
+    <%= f.text_field :content, placeholder: "要約", class: "form-control"  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

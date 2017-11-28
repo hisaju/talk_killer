@@ -1,0 +1,33 @@
+<h2>This is HomePage</h2></br>
+<h3>Talks</h3></br>
+　<% if Talk.count == 0 %><%= 'There is No Talk' %><% end %> 
+  <% Talk.all.each do |talk| %>
+    <td>[<%= talk.status %>]</td>
+    <td><%= talk.title %></td>
+    <td><%= talk.due_date %></td>
+    <td><%= '[要約あり]' unless talk.summaries.nil? %></td>
+    </br>
+  <% end %>
+<h3>Tasks</h3></br>
+　<% if Task.count == 0 %><%= 'There is No Task' %><% end %> 
+  <% Task.all.each do |task| %>
+    <td><%= task.title %></td>
+    <td><%= task.status %></td>
+    <td><%= task.due_date %></td>
+    </br>
+  <% end %>
+<h3>Messages</h3></br>
+　<% if Message.count == 0 %><%= 'There is No Message' %><% end %> 
+  <% Message.all.each do |message| %>
+    <td><%= message.user.name %></td>
+    <td><%= message.body %></td>
+    </br>
+  <% end %>
+<h3>Users</h3></br>
+  <% User.all.each do |user| %>
+    <td><%= profile_img(user) %></td>
+    <td><%= user.name %>
+　  <% if user.id == current_user.id %><%= '← Your Account!' %><% end %>
+    </td>
+    </br>
+  <% end %>

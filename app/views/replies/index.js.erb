@@ -1,0 +1,2 @@
+$("#replies_area").html("<%= j(render 'replies/index', { replies: @comment.replies, comment: @comment }) %>")
+$(':text').val('')

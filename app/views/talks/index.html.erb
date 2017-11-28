@@ -3,28 +3,26 @@
 <h1>Listing Talks</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Summary</th>
-      <th>Status</th>
-      <th>Due_Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody>
     <% @talks.each do |talk| %>
       <tr>
+        <td>[<%= talk.status %>]</td>
         <td><%= talk.title %></td>
-        <td><%= talk.content %></td>
-        <td><% if talk.summary.nil? %>なし<% end %><%= talk.summary %></td>
-        <td><%= talk.status %></td>
-        <td><%= talk.due_date %></td>
-        <td><%= link_to 'Show', talk %></td>
-        <td><%= link_to 'Edit', edit_talk_path(talk) %></td>
-        <td><%= link_to 'Destroy', talk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% if talk.due_date.nil? %>
+              [対応期日:なし]
+            <% else %>
+              [対応期日:<%= talk.due_date %>]</td>
+            <% end %>
+        <td><% if talk.summaries.nil? %>
+              [要約なし]
+            <% else %>
+              [要約あり]<%= talk.summary %>
+            <% end %>
+        </td>
+        <td><%= link_to '[詳細]', talk %></td>
+        <td><%= link_to '[編集]', edit_talk_path(talk) %></td>
+        <td><%= link_to '[削除]', talk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

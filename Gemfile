@@ -48,6 +48,7 @@ end
 group :development do
   gem 'letter_opener_web'
   gem 'dotenv-rails'
+  gem 'rubocop'
 end
 
 gem 'twitter-bootstrap-rails'
@@ -55,7 +56,7 @@ gem 'rails-i18n'
 gem 'rails_12factor', group: :production
 
 gem 'rails_12factor', group: :production
-#gem 'sqlite3'
+gem 'sqlite3', group: :development
 gem 'devise'
 gem 'faker'
 gem 'rails_admin'

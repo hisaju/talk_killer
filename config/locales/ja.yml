@@ -11,3 +11,11 @@ ja:
       talks:
         title:   議題
         content: 内容
+        status:  状態
+        
+ja:
+  talk_status:
+    urgent:    緊急
+    important: 重要
+    propose:   提案
+    notice:    通知

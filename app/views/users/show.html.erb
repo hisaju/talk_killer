@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>ユーザー詳細</h2>
+  <div class="container-child col-xs-4 "></div>
+  <div class="container-child col-md-2 col-sm-2 col-xs-2 "><%= profile_img(@user) %></div>
+  <div class="container-child col-md-2 col-sm-2 col-xs-2 "><%= @user.name %></div>
+  <div class="container-child col-md-2 col-sm-2 col-xs-2 "><%= @user.email %></div>
+  <div class="container-child col-xs-2 "></div>
+  <div class="container-child col-xs-12 "></div>
+  <div class="container-child col-md-6 col-sm-6 col-xs-6 ">
+    <h3><%= @user.name %>が作成したTalk</h3>
+  </div>
+</div>

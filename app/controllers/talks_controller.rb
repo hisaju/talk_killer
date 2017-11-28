@@ -1,28 +1,27 @@
 class TalksController < ApplicationController
+  #before_action :authenticate_user!
   before_action :set_talk, only: [:show, :edit, :update, :destroy]
 
-  # GET /talks
-  # GET /talks.json
   def index
     @talks = Talk.all
   end
 
-  # GET /talks/1
-  # GET /talks/1.json
   def show
+    @comment   = @talk.comments.build
+    @comments  = @talk.comments
+    @summary   = @talk.summaries.build
+    @summaries = @talk.summaries
+    @reply     = @comment.replies.build
+    @replies   = @comment.replies
   end
 
-  # GET /talks/new
   def new
     @talk = Talk.new
   end
 
-  # GET /talks/1/edit
   def edit
   end
 
-  # POST /talks
-  # POST /talks.json
   def create
     @talk = Talk.new(talk_params)
 
@@ -37,8 +36,6 @@ class TalksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /talks/1
-  # PATCH/PUT /talks/1.json
   def update
     respond_to do |format|
       if @talk.update(talk_params)
@@ -51,8 +48,6 @@ class TalksController < ApplicationController
     end
   end
 
-  # DELETE /talks/1
-  # DELETE /talks/1.json
   def destroy
     @talk.destroy
     respond_to do |format|
@@ -62,12 +57,10 @@ class TalksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_talk
       @talk = Talk.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def talk_params
       params.require(:talk).permit(:title, :content, :status, :due_date)
     end

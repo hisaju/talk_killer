@@ -15,3 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore env
+.env
+
+# Ignore README
+README.rdoc

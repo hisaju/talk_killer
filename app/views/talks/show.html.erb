@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @talk.title %>
+  [<%= @talk.status %>] <%= @talk.title %> </br>
+  <% if @talk.due_date.nil? %>
+    [対応期限] なし
+  <% else %>
+    [対応期限] <%= @talk.due_date %></td>
+  <% end %>
 </p>
 
 <p>
@@ -10,21 +14,30 @@
   <%= @talk.content %>
 </p>
 
-<p>
-  <strong>Summary:</strong>
-  <%= @talk.summary %>
-  <%  if @talk.summary.nil? %>なし<% end %>
+<p class="right">
+  <strong>作成時間:</strong>
+  <%= @talk.created_at.strftime("%y/%m/%d %p %l:%M") %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @talk.status %>
+<p class="right">
+  <strong>更新時間:</strong>
+  <%= @talk.updated_at.strftime("%y/%m/%d %p %l:%M") %>
 </p>
 
-<p>
-  <strong>Due_Date:</strong>
-  <%= @talk.due_date %>
-</p>
+<div id="comments_area">
+  <%= render partial: 'comments/index', locals: { replies: @replies, comments: @comments, talk: @talk } %>
+</div>
+  <%= render partial: 'comments/form',  locals: { comment: @comment, talk: @talk } %>
+</div>
 
-<%= link_to 'Edit', edit_talk_path(@talk) %> |
-<%= link_to 'Back', talks_path %>
+<div id="summaries_area">
+  [要約]
+  <%= render partial: 'summaries/index',  locals: { summaries: @summaries, talk: @talk } %>
+  </div>
+  <% if @talk.summaries.nil? %>
+    <%= render partial: 'summaries/form', locals: { summary: @summary,     talk: @talk } %>
+  <% end %>
+</div>
+
+<%= link_to '編集', edit_talk_path(@talk) %> |
+<%= link_to '戻る', talks_path %>
