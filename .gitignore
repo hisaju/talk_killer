@@ -21,3 +21,6 @@
 
 # Ignore README
 README.rdoc
+
+# Ignore app/views/layout/application.html.erb
+app/views/layout/application.html.erb
