@@ -1,30 +1,19 @@
 <ul>
   <% comments.each do |comment| %>
     <% unless comment.id.nil? %>
-    <% @comment = comment %>
       <li>
         <p class="left"><%= comment.content %> @<%= comment.user.name %></p>
+        <p class="right">
         <% if current_user.id == comment.user.id %>
-          <p class="right">
             <%= link_to '', edit_talk_comment_path(talk, comment), class: "fa fa-pencil-square-o fa-lg" %>
             <%= link_to '',      talk_comment_path(talk, comment), class: "fa fa-trash-o fa-lg",
                 method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
-          </p>
         <% end %>
-        <p class="right">
-          <div id="replies_area">
-            <%= render partial: 'replies/index',
-             locals: { replies: @replies, comment: @comment, talk: @talk } %>
-          </div>
+        <% comment = comment %>
+        <% replies_count  = comment.replies.count %>
+        <%= link_to " #{ replies_count unless replies_count == 0 }",
+          talk_comment_replies_path(talk,comment), class: "fa fa-reply fa-lg" %>
         </p>
-        <% unless current_user.id == comment.user.id %>
-          <p class="right">
-              <%= render partial: 'replies/form' ,
-               locals: {   reply: @reply  , comment: @comment, talk: @talk } %>
-            </div>
-            <%= link_to '', edit_talk_comment_path(talk, comment), class: "fa fa-reply fa-lg" %>
-          </p>
-        <% end %>
       </li>
     <% end %>
   <% end %>

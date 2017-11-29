@@ -11,8 +11,8 @@ class TalksController < ApplicationController
     @comments  = @talk.comments
     @summary   = @talk.summaries.build
     @summaries = @talk.summaries
-    @reply     = @comment.replies.build
-    @replies   = @comment.replies
+    #@reply     = @comment.replies.build
+    #@replies   = @comment.replies
   end
 
   def new

@@ -1,0 +1,27 @@
+<p class="left"><%= @comment.content %> @<%= @comment.user.name %></p>
+<% talk = Talk.find_by_id([@comment.talk_id]) %>
+<% comment = @comment %>
+<ul>
+  <% @replies.each do |reply| %>
+    <% unless reply.id.nil? %>
+      <li>
+        <p class="left"><%= reply.content %> @<%= reply.user.name %></p>
+        <% if current_user.id == reply.user.id %>
+            <p class="right">
+              <%= link_to '', edit_talk_comment_reply_path(talk, comment, reply), class: "fa fa-pencil-square-o fa-lg" %>
+              <%= link_to '', talk_comment_reply_path(talk, comment, reply), class: "fa fa-trash-o fa-lg",
+                method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+            </p>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p class="right">
+    <%= render partial: 'replies/form' ,
+     locals: {   reply: @reply  , comment: @comment, talk: @talk } %>
+  </div>
+</p>
+
+<%= link_to '戻る', :back %>

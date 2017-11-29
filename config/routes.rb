@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :talks do
     resources :comments do
-      resources :replies 
+      resources :replies, only: %i[index create edit update destroy]
     end
     resources :summaries
   end

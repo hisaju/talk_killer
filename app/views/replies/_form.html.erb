@@ -1,8 +1,8 @@
-<%= form_for([talk,comment,reply], remote: true) do |f| %>
+<% talk = Talk.find_by(params[:id]) %>
+<%= form_for([talk,comment,reply]) do |f| %>
   <% if reply.errors.any? %>
     <div id="error_explanation">
       <h2><%= reply.errors.count %>件のエラーがあります。</h2>
-
       <ul>
       <% reply.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

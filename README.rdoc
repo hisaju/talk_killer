@@ -334,7 +334,8 @@ summaries.each
 talk.rb
     enum status:    %i(urgent important propose notice closed)
     enum templates: %i(announce discussion question debate)
-ーーー
+---
+
  
 ・リプライ
  - リプライIDの取得
@@ -344,22 +345,85 @@ talk.rb
  リプライ用のテーブル作成？
  リプライのリンク
  リプライ内容を投稿しても何も起こらない
+
+Reply作成
+rails g model Reply user:references talk:references comment:references content:text
+rails g controller Replies index edit
  
 1.0h 表示
 [デグレード]
 コメントフォームに最後の@commentの内容が入ってしまう
 投稿すると内容を書き換えてしまう
 
-Reply作成
-rails g model Reply user:references talk:references comment:references content:text
-rails g controller Replies index edit
+1.0h 内容をCommitし、状況を記載
+
+今後の方針
+talk/show.html.erbからリンクを作成
+commentに対してのreply専用フォームを作成
+
+1.0h修正
+https://qiita.com/shunsuke227ono/items/7accec12eef6d89b0aa9
+https://udemy.benesse.co.jp/development/link-to.html
+0.5h修正
+3.0h
+1.0h - delete Reply
+[残タスク]
+        
+https://qiita.com/hiyoko/items/f1491e53450cb347606b
+        
+・リプライ作成のAjax化
+・リプライ削除のAjax化
+reply/index.html.erb
+<%= link_to '',      talk_comment_replies_path(talk,comment,reply), class: "fa fa-trash-o fa-lg",
+                method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+・[要約:＠test0101]
+
+・reply/index.html.erbの戻るリンク作成
+<%= link_to '戻る', :back %>では、リプライ作成後に押下してもコメント一覧に戻れない
+
  
 ・多対多
  - コメントモデルを使う？
 
 ・layout
  - Bootstrap
+ https://qiita.com/opengl-8080/items/5398eda06f0da4170c32
+ 
+ link_to
+ http://ruby-rails.hatenadiary.com/entry/20140727/1406439331
 
+・Homeへのリンク設定
+ - <a>タグでしかできない？
+ - <a>タグの場合、hrefには生URL以外設定できる？
+ - herokuの場合別途設定する必要あり
+ 
+   <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#collapse-target">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a href="https://talk-killer-yuji911227.c9users.io" class="navbar-brand">talk_killer</a>
+            <div class="navbar-brand"><%= link_to 'ホーム'      ,         root_path  %></div>
+        </div>
+ 
+・labelに色を付ける
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+    </head>
+    <body>
+        <span class="label label-default">default</span>
+        <span class="label label-primary">primary</span>
+        <span class="label label-success">success</span>
+        <span class="label label-info">info</span>
+        <span class="label label-warning">warning</span>
+        <span class="label label-danger">danger</span>
+    </body>
+</html>
+
+・プレゼン資料
 
 【補足】
 画像登録
@@ -379,6 +443,8 @@ rails g controller Replies index edit
 作成日時
 更新日時
 いいね
+
+[はまった部分]
 ---
 config/routes.rb
 deviseを最初に持ってくること
@@ -407,6 +473,168 @@ deviseを最初に持ってくること
 
 renderしたら処理終わるので、編集リンクはコンパイルされない
 ---
+'#{}'
+"#{}"
+
+<% replies_count  = comment.replies.count %>
+        <%= link_to " #{ replies_count unless replies_count == 0 }",
+          talk_comment_replies_path(talk, comment), class: "fa fa-reply fa-lg" %>
+          
+---
+replies.index.html.erbを@インスタンス変数で出力してしまうと、
+List形式で表示する際に全て同じ内容になってしまう
+---
+replies/index.html.erb
+<%= params[:comment_id] %>
+<% @comment = Comment.find_by(params[:comment_id]) %>
+<%= @comment.id %>
+<% @replies = @comment.replies %>
+
+
+https://qiita.com/soudai_s/items/64ef824fe913be9093bb
+https://qiita.com/toshimitsu-miyachi/items/c0cf9cfd1631a2457bf9
+http://poyopoyo0.hatenablog.com/entry/2016/02/29/100431
+http://railsdoc.com/references/link_to_if
+
+Controllerで定義したインスタンス変数について、viewで参照することはできるが、
+Viewで代入して値を変更することはできない？
+
+params[:comment_id] 4 代入前_@comment 1 
+代入後_@comment 1 代入後_comment 1
+新宿希望 @test0101
+
+リプライテスト @test0101
+
+<%= "params[:comment_id]" %>
+<%= params[:comment_id] %>
+<%= "代入前_@comment" %>
+<%= @comment.id %>
+</br>
+<% @comment = Comment.find_by(params[:comment_id]) %>
+<% comment = Comment.find_by(params[:comment_id]) %>
+<%= "代入後_@comment" %>
+<%= @comment.id %>
+<%= "代入後_comment" %>
+<%= comment.id %>
+<% @replies = @comment.replies %>
+<p class="left"><%= @comment.content %> @<%= @comment.user.name %></p>
+<ul>
+  <% @replies.each do |reply| %>
+    <% unless reply.id.nil? %>
+      <li>
+        <p class="left"><%= reply.content %> @<%= reply.user.name %></p>
+
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+class RepliesController < ApplicationController
+  
+  def index
+    @comment = Comment.find_by(params[:id])
+    @reply     = @comment.replies.build
+    @replies   = @comment.replies
+  end
+
+---
+find_byでidが異なっても既に存在する１件を取得する？
+find_by_idとfind_byの挙動の違い
+[2] pry(#<RepliesController>)> Comment.find_by(params[:comment_id])
+  CACHE (0.0ms)  SELECT  "comments".* FROM "comments" WHERE (4) LIMIT 1
+=> #<Comment:0x007f33cb7324f8
+ id: 1,
+ user_id: 1,
+ talk_id: 1,
+ content: "新宿希望",
+ created_at: Mon, 27 Nov 2017 13:23:23 UTC +00:00,
+ updated_at: Tue, 28 Nov 2017 07:46:09 UTC +00:00>
+ 
+ [4] pry(#<RepliesController>)> Comment.find_by_id(params[:comment_id])
+  Comment Load (0.4ms)  SELECT  "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", 4]]
+=> #<Comment:0x007f33cb232cc8
+ id: 4,
+ user_id: 2,
+ talk_id: 1,
+ content: "目黒",
+ created_at: Mon, 27 Nov 2017 14:51:14 UTC +00:00,
+ updated_at: Mon, 27 Nov 2017 14:51:14 UTC +00:00>
+ 
+ ・find_byの場合、どのような条件にすれば適切に検索できる？
+ 
+ [6] pry(#<RepliesController>)> Comment.find_by(Comment.id = params[:comment_id])                                                    
+NoMethodError: undefined method `id=' for #<Class:0x007f33cb68ae10>
+Did you mean?  ids
+from /usr/local/rvm/gems/ruby-2.3.4/gems/activerecord-4.2.5/lib/active_record/dynamic_matchers.rb:26:in `method_missing'
+[7] pry(#<RepliesController>)> Comment.find_by(id == params[:comment_id])
+RuntimeError: unsupported: TrueClass
+from /usr/local/rvm/gems/ruby-2.3.4/gems/arel-6.0.4/lib/arel/visitors/to_sql.rb:736:in `unsupported'
+---
+
+<p class="left"><%= @comment.content %> @<%= @comment.user.name %></p>
+<ul>
+  <% @replies.each do |reply| %>
+    <% unless reply.id.nil? %>
+      <li>
+        <p class="left"><%= reply.content %> @<%= reply.user.name %></p>
+
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p class="right">
+    <%= render partial: 'replies/form' ,
+     locals: {   reply: @reply  , comment: @comment, talk: @talk } %>
+  </div>
+</p>
+
+---
+Delete
+remote true
+No route matches [DELETE] "/talks/1/comments/1/replies.14"
+
+<ul>
+  <% @replies.each do |reply| %>
+    <% unless reply.id.nil? %>
+      <li>
+        <p class="left"><%= reply.content %> @<%= reply.user.name %></p>
+        <% if current_user.id == reply.user.id %>
+            <p class="right">
+              <%= link_to '', edit_talk_comment_reply_path(talk, comment, reply), class: "fa fa-pencil-square-o fa-lg" %>
+              <%= link_to '', talk_comment_reply_path(talk, comment, reply), class: "fa fa-trash-o fa-lg",
+                method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+            </p>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+link_toメソッドのPATHを変更しても、
+エラーページからブラウザの戻るで実行しなおした場合、
+正しくPATHが反映されていない
+変更前のPATHが適用される
+
+
+
+FACT
+no route matches
+
+destroy action
+binding.pry起動せず
+--> index viewのリンク先設定がおかしい
+
+[typo]
+talk_comment_replies_path
+talk_comment_reply_path
+
+---
+binding.pry
+delete
+Reply.find(params[:id])
+見つからないが、レコードは消えている状況
 
 [TODO]-----------------------------------------------
 title not null
