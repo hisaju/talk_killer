@@ -5,14 +5,14 @@
         <p class="left"><%= comment.content %> @<%= comment.user.name %></p>
         <p class="right">
         <% if current_user.id == comment.user.id %>
-            <%= link_to '', edit_talk_comment_path(talk, comment), class: "fa fa-pencil-square-o fa-lg" %>
-            <%= link_to '',      talk_comment_path(talk, comment), class: "fa fa-trash-o fa-lg",
+            <%= link_to '', edit_talk_comment_path(talk, comment), class: "fa fa-pencil-square-o" %>
+            <%= link_to '',      talk_comment_path(talk, comment), class: "fa fa-trash-o",
                 method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
         <% end %>
         <% comment = comment %>
         <% replies_count  = comment.replies.count %>
         <%= link_to " #{ replies_count unless replies_count == 0 }",
-          talk_comment_replies_path(talk,comment), class: "fa fa-reply fa-lg" %>
+          talk_comment_replies_path(talk,comment), class: "fa fa-reply" %>
         </p>
       </li>
     <% end %>

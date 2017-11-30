@@ -664,6 +664,39 @@ Home画面、Max５~１０件
 Home画面から詳細へのリンク
 アカウント情報変更でfが未定義のエラー
 
+https://developer.mozilla.org/ja/docs/Web/HTML/Element/a
+https://qiita.com/shunsuke227ono/items/21f5968ca7ca0391b583
+https://qiita.com/shunsuke227ono/items/60de21690238aa25e9d4#_reference-573dfab73b503b7c2e60
+
+
+---
+index.html.erbでswitch文を使いたかった
+
+        <td>[<%= talk.status %>]
+        <% if talk.status = 0 %>
+          <div class="label label-danger"><%='緊急'%></div>
+        <% end %>
+        
+        <% case talk.status
+           when 0 %><div class="label label-danger"><%='緊急'%></div>
+        <% when 1 %><div class="label label-warning"><%='重要'%></div>
+        <% when 2 %><div class="label label-primary"><%='提案'%></div>
+        <% when 3 %><div class="label label-info"><%='告知'%></div>
+        <% when 4 %><div class="label label-success"><%='解決'%></div>
+        <% end %>
+      <% end %>
+---
+空白文字の挿入
+「&nbsp;」は通常の半角スペースと同じサイズの空白。
+「&ensp;」はそれより少し広めの空白。
+「&emsp;」はさらに広めの空白。
+「&thinsp;」は、最初の「&nbsp;」よりも狭い(細い)空白です。
+
+CSS
+http://www.htmq.com/style/line-height.shtml
+
+
+http://studio-key.com/Bootstrap/fontDecoration05.html
 [SNS Login]------------------------------------------
 [SEE ALSO:https://diver.diveintocode.jp/textbooks/19]
 

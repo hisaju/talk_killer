@@ -5,29 +5,45 @@
 <table>
 
   <tbody>
+    <% if Talk.count == 0 %><%= 'There is No Talk' %><% end %> 
     <% @talks.each do |talk| %>
       <tr>
-        <td>[<%= talk.status %>]</td>
-        <td><%= talk.title %></td>
-        <td><% if talk.due_date.nil? %>
-              [対応期日:なし]
-            <% else %>
-              [対応期日:<%= talk.due_date %>]</td>
-            <% end %>
-        <td><% if talk.summaries.nil? %>
-              [要約なし]
-            <% else %>
-              [要約あり]<%= talk.summary %>
+        <td>
+          <% if talk.status == '緊急' %>
+            <div class="label label-danger" ><%='緊急 '%></div>
+          <% end %>
+          <% if talk.status == '重要' %>
+            <div class="label label-warning"><%='重要 '%></div>
+          <% end %>
+          <% if talk.status == '提案' %>
+            <div class="label label-primary"><%='提案 '%></div>
+          <% end %>
+          <% if talk.status == '告知' %>
+            <div class="label label-info"   ><%='告知 '%></div>
+          <% end %>
+          <% if talk.status == '解決' %>
+            <div class="label label-success"><%='解決 '%></div>
+          <% end %>
+        </td>
+        <td><%= talk.title %>&nbsp;</td>
+        <td><% unless talk.due_date.nil? %>
+              <div class="label label-default">
+                 対応期限 <%= talk.due_date %>
+              </div>
             <% end %>
         </td>
-        <td><%= link_to '[詳細]', talk %></td>
-        <td><%= link_to '[編集]', edit_talk_path(talk) %></td>
-        <td><%= link_to '[削除]', talk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% unless talk.summaries.nil? %>
+              <div class="label label-info"><%= '要約あり' %></div>
+            <% end %>
+        </td>
+        <td>&nbsp;<%= link_to '', talk, class: "fa fa-file-text-o"%></td>
+        <td>&thinsp;<%= link_to '', edit_talk_path(talk), class: "fa fa-pencil-square-o" %></td>
+        <td>&thinsp;<%= link_to '', talk, method: :delete, class: "fa fa-trash-o",data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Talk', new_talk_path %>
+<button type="button" class="btn btn-default">
+  <%= link_to ' New Talk', new_talk_path, class: "fa fa-pencil"%>
+</button>

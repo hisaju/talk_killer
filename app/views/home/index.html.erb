@@ -1,19 +1,59 @@
-<h2>This is HomePage</h2></br>
 <h3>Talks</h3></br>
 　<% if Talk.count == 0 %><%= 'There is No Talk' %><% end %> 
   <% Talk.all.each do |talk| %>
-    <td>[<%= talk.status %>]</td>
+    <td>
+      <% if talk.status == '緊急' %>
+        <div class="label label-danger" ><%='緊急'%></div>
+      <% end %>
+      <% if talk.status == '重要' %>
+        <div class="label label-warning"><%='重要'%></div>
+      <% end %>
+      <% if talk.status == '提案' %>
+        <div class="label label-primary"><%='提案'%></div>
+      <% end %>
+      <% if talk.status == '告知' %>
+        <div class="label label-info"   ><%='告知'%></div>
+      <% end %>
+      <% if talk.status == '解決' %>
+        <div class="label label-success"><%='解決'%></div>
+      <% end %>
+    </td>
     <td><%= talk.title %></td>
-    <td><%= talk.due_date %></td>
-    <td><%= '[要約あり]' unless talk.summaries.nil? %></td>
+    <td>
+      <% unless talk.due_date.nil? %>
+        <div class="label label-default">
+           対応期限 <%= talk.due_date %>
+        </div>
+      <% end %>
+    </td>
+    <td><div class="label label-info"><%= '要約あり' unless talk.summaries.nil? %></div></td>
     </br>
   <% end %>
 <h3>Tasks</h3></br>
 　<% if Task.count == 0 %><%= 'There is No Task' %><% end %> 
   <% Task.all.each do |task| %>
+    <td>
+      <% if task.status == 'urgent' %>
+        <div class="label label-danger" ><%='緊急'%></div>
+      <% end %>
+      <% if task.status == 'important' %>
+        <div class="label label-warning"><%='重要'%></div>
+      <% end %>
+      <% if task.status == 'todo' %>
+        <div class="label label-primary"><%='なるはや'%></div>
+      <% end %>
+      <% if task.status == 'someday' %>
+        <div class="label label-default" ><%='いつか'%></div>
+      <% end %>
+    </td>
     <td><%= task.title %></td>
-    <td><%= task.status %></td>
-    <td><%= task.due_date %></td>
+    <td>
+      <% unless task.due_date.nil? %>
+        <div class="label label-default">
+           対応期限 <%= task.due_date %>
+        </div>
+      <% end %>
+    </td>
     </br>
   <% end %>
 <h3>Messages</h3></br>

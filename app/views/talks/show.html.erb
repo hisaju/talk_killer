@@ -1,12 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  [<%= @talk.status %>] <%= @talk.title %> </br>
   <% if @talk.due_date.nil? %>
-    [対応期限] なし
+    <div class="label label-default">対応期限 なし</div>
   <% else %>
-    [対応期限] <%= @talk.due_date %></td>
+    <div class="label label-default">対応期限 <%= @talk.due_date %></div>
   <% end %>
+  </br></br>
+  <% if @talk.status == '緊急' %>
+    <div class="label label-danger" ><%='緊急'%></div>
+  <% end %>
+  <% if @talk.status == '重要' %>
+    <div class="label label-warning"><%='重要'%></div>
+  <% end %>
+  <% if @talk.status == '提案' %>
+    <div class="label label-primary"><%='提案'%></div>
+  <% end %>
+  <% if @talk.status == '告知' %>
+    <div class="label label-info"   ><%='告知'%></div>
+  <% end %>
+  <% if @talk.status == '解決' %>
+    <div class="label label-success"><%='解決'%></div>
+  <% end %>
+  <%= @talk.title %>
 </p>
 
 <p>
@@ -31,7 +47,7 @@
 </div>
 
 <div id="summaries_area">
-  [要約]
+  <div class="label label-info"   >要約</div>
   <%= render partial: 'summaries/index',  locals: { summaries: @summaries, talk: @talk } %>
   </div>
   <% if @talk.summaries.nil? %>
