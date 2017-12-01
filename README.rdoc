@@ -694,7 +694,7 @@ index.html.erbでswitch文を使いたかった
 
 CSS
 http://www.htmq.com/style/line-height.shtml
-
+http://programming-study.com/technology/bootstrap-cheatsheet/
 
 http://studio-key.com/Bootstrap/fontDecoration05.html
 [SNS Login]------------------------------------------

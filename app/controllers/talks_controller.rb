@@ -3,7 +3,7 @@ class TalksController < ApplicationController
   before_action :set_talk, only: [:show, :edit, :update, :destroy]
 
   def index
-    @talks = Talk.all
+    @talks = Talk.all.includes(:replies, :comments)
   end
 
   def show

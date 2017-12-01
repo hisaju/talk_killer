@@ -26,21 +26,14 @@
                 <li><%= link_to 'Users'  ,         users_path %></li>
                 <li><%= link_to 'Messages'  , conversations_path %></li>
                 <% if user_signed_in? %>
-                  <div class="btn-group">
-                    <button class="btn btn-default" data-toggle="dropdown">
-                        Setting<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                          <li><%= link_to 'アカウント情報変更', edit_user_registration_path %></li>
-                          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-                    </ul>
-                  </div>
+                   <li><%= link_to 'Account', edit_user_registration_path %></li>
+                   <li><%= link_to ' Logout', destroy_user_session_path, method: :delete, class: "fa fa-sign-out" %></li>
                 <% else %>
-                  <li><%= link_to 'ログイン'  ,        new_user_session_path %></li>
-                  <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                  <li><%= link_to 'Login'  ,        new_user_session_path %></li>
+                  <li><%= link_to 'SighUp', new_user_registration_path %></li>
                 <% end %>
             </ul>
-            <button class="navbar-btn btn btn-default"><%= link_to 'New Talk', new_talk_path %></button>
+            <button class="navbar-btn btn btn-default"><%= link_to ' New Talk', new_talk_path ,class: "fa fa-pencil" %></button>
         </div>
     </nav>
   </header>

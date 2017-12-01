@@ -2,10 +2,13 @@
 
 <p>
   <% if @talk.due_date.nil? %>
-    <div class="label label-default">対応期限 なし</div>
+    <div class="label label-default">対応期限 なし&thinsp;</div>
   <% else %>
-    <div class="label label-default">対応期限 <%= @talk.due_date %></div>
+    <div class="label label-default">対応期限 <%= @talk.due_date %>&thinsp;</div>
   <% end %>
+  <div class="label label-default">
+    <%= link_to ' 編集', edit_talk_path(@talk), class: "fa fa-pencil-square-o", :style=>"color:white;" %>
+  </div> 
   </br></br>
   <% if @talk.status == '緊急' %>
     <div class="label label-danger" ><%='緊急'%></div>
@@ -55,5 +58,4 @@
   <% end %>
 </div>
 
-<%= link_to '編集', edit_talk_path(@talk) %> |
 <%= link_to '戻る', talks_path %>
