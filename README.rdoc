@@ -697,6 +697,28 @@ http://www.htmq.com/style/line-height.shtml
 http://programming-study.com/technology/bootstrap-cheatsheet/
 
 http://studio-key.com/Bootstrap/fontDecoration05.html
+
+RAILS
+https://qiita.com/seri_k/items/605e6f75da838ae00007
+
+RAILS MOTION
+https://qiita.com/shida/items/a03b05fbc58dbb4f4575
+
+RUBY
+https://qiita.com/kitaro_tn/items/6372e3efad558f18b3b5
+
+CODE
+https://qiita.com/zwirky/items/3a0a07480f672624ae02
+
+AI
+https://qiita.com/yoshizaki_kkgk/items/fa8b45918445bb3e6dc3
+
+C++
+https://qiita.com/developerwaiwai/items/87a90cdb854b15a33309
+
+CASH
+https://qiita.com/kazukichi/items/7379b75fba2f90d3cf45
+
 [SNS Login]------------------------------------------
 [SEE ALSO:https://diver.diveintocode.jp/textbooks/19]
 

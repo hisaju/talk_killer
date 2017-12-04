@@ -1,35 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  [<%= @talk.status %>] <%= @talk.title %> </br>
   <% if @talk.due_date.nil? %>
-    <div class="label label-default">対応期限 なし&thinsp;</div>
+    [対応期限] なし
   <% else %>
-    <div class="label label-default">対応期限 <%= @talk.due_date %>&thinsp;</div>
+    [対応期限] <%= @talk.due_date %></td>
   <% end %>
-  <div class="label label-default">
-    <%= link_to ' 編集', edit_talk_path(@talk), class: "fa fa-pencil-square-o", :style=>"color:white;" %>
-  </div> 
-  </br></br>
-  <% if @talk.status == '緊急' %>
-    <div class="label label-danger" ><%='緊急'%></div>
-  <% end %>
-  <% if @talk.status == '重要' %>
-    <div class="label label-warning"><%='重要'%></div>
-  <% end %>
-  <% if @talk.status == '提案' %>
-    <div class="label label-primary"><%='提案'%></div>
-  <% end %>
-  <% if @talk.status == '告知' %>
-    <div class="label label-info"   ><%='告知'%></div>
-  <% end %>
-  <% if @talk.status == '解決' %>
-    <div class="label label-success"><%='解決'%></div>
-  <% end %>
-  <%= @talk.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>内容:</strong>
   <%= @talk.content %>
 </p>
 
@@ -50,12 +31,13 @@
 </div>
 
 <div id="summaries_area">
-  <div class="label label-info"   >要約</div>
+  [要約]
   <%= render partial: 'summaries/index',  locals: { summaries: @summaries, talk: @talk } %>
   </div>
-  <% if @talk.summaries.nil? %>
+  <% if @talk.summaries.first.id.nil? %>
     <%= render partial: 'summaries/form', locals: { summary: @summary,     talk: @talk } %>
   <% end %>
 </div>
 
+<%= link_to '編集', edit_talk_path(@talk) %> |
 <%= link_to '戻る', talks_path %>
