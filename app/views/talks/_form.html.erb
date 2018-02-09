@@ -12,24 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :話題 %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :content %><br>
+    <%= f.label :内容 %><br>
     <%= f.text_field :content %>
   </div>
   <div class="field">
-    <%= f.label :template %><br>
-    <%= f.select :template, Talk.templates.keys.to_a, {}, class: "form-control" %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
+    <%= f.label :状態 %><br>
     <%= f.select :status, Talk.statuses.keys.to_a, {}, class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :due_date %><br>
+    <%= f.label :対応期限 %><br>
     <%= f.date_field :due_date %>
+  </div>
+  <div class="field">
+    関係者<br>
+    <%= f.select :templates, Talk.templates.keys.to_a, {}, class: "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit %>
