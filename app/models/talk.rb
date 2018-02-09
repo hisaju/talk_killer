@@ -4,5 +4,5 @@ class Talk < ActiveRecord::Base
     has_many :replies,   dependent: :destroy
     has_many :summaries, dependent: :destroy
     enum status:    %i(緊急 重要 提案 告知 解決)
-    enum templates: %i(announce discussion question debate)
+    enum templates: %i(全員 グループA グループB グループC)
 end
