@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       if @comment.save
         #TODO:通知に関しての処理をModelに記載する
         #TODO:通知が保存されない
-        format.html { redirect_to talk_path(@talk), notice: 'コメントを投稿しました。' }
+        format.html { redirect_to talk_path(@talk), notice: 'コメントを投稿しました' }
         format.js { render :index }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if Comment.find(params[:id]).destroy
-        format.html { redirect_to talk_path(@talk), notice: 'コメントを削除しました。' }
+        format.html { redirect_to talk_path(@talk), notice: 'コメントを削除しました' }
         format.js { render :index }
       else
         format.html { render :new }

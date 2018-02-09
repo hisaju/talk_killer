@@ -18,7 +18,7 @@ class RepliesController < ApplicationController
       if @reply.save
         #TODO:通知に関しての処理をModelに記載する
         #TODO:通知が保存されない
-        format.html { redirect_to talk_comment_replies_path, notice: 'コメントに返信しました。' }
+        format.html { redirect_to talk_comment_replies_path, notice: 'コメントに返信しました' }
         format.js { render :index }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class RepliesController < ApplicationController
     # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if Reply.find(params[:id]).destroy
-        format.html { redirect_to :action => "index", notice: 'リプライを削除しました。' }
+        format.html { redirect_to :action => "index", notice: 'リプライを削除しました' }
         format.js   { render :index }
       else
         format.html { render :new }

@@ -27,7 +27,7 @@ class TalksController < ApplicationController
 
     respond_to do |format|
       if @talk.save
-        format.html { redirect_to @talk, notice: 'Talk was successfully created.' }
+        format.html { redirect_to @talk, notice: 'トークが作成されました' }
         format.json { render :show, status: :created, location: @talk }
       else
         format.html { render :new }
@@ -39,7 +39,7 @@ class TalksController < ApplicationController
   def update
     respond_to do |format|
       if @talk.update(talk_params)
-        format.html { redirect_to @talk, notice: 'Talk was successfully updated.' }
+        format.html { redirect_to @talk, notice: 'トークが更新されました' }
         format.json { render :show, status: :ok, location: @talk }
       else
         format.html { render :edit }
@@ -51,7 +51,7 @@ class TalksController < ApplicationController
   def destroy
     @talk.destroy
     respond_to do |format|
-      format.html { redirect_to talks_url, notice: 'Talk was successfully destroyed.' }
+      format.html { redirect_to talks_url, notice: 'トークが削除されました' }
       format.json { head :no_content }
     end
   end
