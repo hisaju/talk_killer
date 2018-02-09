@@ -1,18 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
-
-<p>
-  <strong>Due date:</strong>
-  <%= @task.due_date %>
+  <td>
+     <% if @task.status == 'urgent' %>
+       <div class="label label-danger" ><%='緊急'%></div>
+     <% end %>
+     <% if @task.status == 'important' %>
+       <div class="label label-warning"><%='重要'%></div>
+     <% end %>
+     <% if @task.status == 'todo' %>
+       <div class="label label-primary"><%='なるはや'%></div>
+     <% end %>
+     <% if @task.status == 'someday' %>
+       <div class="label label-default" ><%='いつか'%></div>
+     <% end %>
+  </td>
+  &thinsp;<strong><%= @task.title %></strong></br>
+  <div class="label label-default">
+    対応期限
+  </div>
+  <% if @task.due_date.nil? %>
+    &thinsp;なし
+  <% else %>
+    &thinsp;<%= @task.due_date %></td>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
