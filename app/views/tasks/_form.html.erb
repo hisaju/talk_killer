@@ -12,15 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :タスク名 %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :status %><br>
+    <%= f.label :内容 %><br>
     <%= f.select :status, Task.statuses.keys.to_a, {}, class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :due_date %><br>
+    <%= f.label :対応期限 %><br>
     <%= f.date_select :due_date %>
   </div>
 
