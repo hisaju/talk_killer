@@ -17,7 +17,7 @@
       <div class="label label-success"><%='解決 '%></div>
     <% end %>
   </td>
-  &thinsp;<%= @talk.title %> </br>
+  &thinsp;<strong><%= @talk.title %></strong></br>
   <div class="label label-default">
     対応期限
   </div>
@@ -55,7 +55,9 @@
   <div class="label label-info">
     要約
   </div>
-  <%= render partial: 'summaries/index',  locals: { summaries: @summaries, talk: @talk } %>
+    <strong>
+    <%= render partial: 'summaries/index',  locals: { summaries: @summaries, talk: @talk } %>
+    </strong>
   </div>
   <% if @talk.summaries.first.id.nil? %>
     <%= render partial: 'summaries/form', locals: { summary: @summary,     talk: @talk } %>
