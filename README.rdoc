@@ -1,3 +1,21 @@
+-confirmable
+-mailer
+heroku config:set SENDGRID_USERNAME=app87770625@heroku.com
+heroku config:set SENDGRID_PASSWORD=eehretx67341
+
+https://stackoverflow.com/questions/7613069/undefined-method-new-confirmation-path-confirmation-module-devise-mongoid
+
+-current_user
+-edit,delete_permission
+
+-Picture
+
+-heroku
+-SNSLogin
+
+-TopPage Limit
+
+
 == README
 - HTML,CSS,Bootstrapを使用して、現実のGithub issueに似せたデザインにすること
 - Home画面があること
@@ -20,6 +38,27 @@
 - 例外処理を行うこと
 - 適切に日本語化すること
 -- ja.ymlの作成
+
+
+layout_header
+<button class="navbar-btn btn btn-default"><%= link_to ' New Talk', new_talk_path ,class: "fa fa-pencil" %></button>
+
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+ 
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover,
+.navbar-inverse .brand:focus,
+.navbar-inverse .nav > li > a:focus {
+  color: #aaaaaa;
+}
+ 
+.navbar-inverse .brand {
+  color: #ffffff;
+}
 
 [TODO]
 * gem install bundler
@@ -701,7 +740,7 @@ http://studio-key.com/Bootstrap/fontDecoration05.html
 RAILS
 https://qiita.com/seri_k/items/605e6f75da838ae00007
 
-RAILS MOTION
+RAILS MOTION Objective-C
 https://qiita.com/shida/items/a03b05fbc58dbb4f4575
 
 RUBY
@@ -716,8 +755,42 @@ https://qiita.com/yoshizaki_kkgk/items/fa8b45918445bb3e6dc3
 C++
 https://qiita.com/developerwaiwai/items/87a90cdb854b15a33309
 
-CASH
+SWIFT
+https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28
+
+WEB SERVICE
+https://qiita.com/gonjyu121/items/033f588e5dcd6b40ed5e
+
+ENGINEER MAKE CASH 19 POINTS
 https://qiita.com/kazukichi/items/7379b75fba2f90d3cf45
+
+MANAGE MEMBER
+https://qiita.com/hondaYoshitaka/items/273f5e674fe3c1663a38
+
+CLOUD WORK
+https://qiita.com/cognitom/items/c489991a05f9abac748f
+
+Eclipse che
+https://qiita.com/rerofumi/items/eec865155c8c59f523f2
+
+IaaS PaaS SaaS
+https://qiita.com/kznr_luk/items/55a3ff527bd2b81a3d52
+
+https://prepros.io/
+
+CODE RETREAT
+https://qiita.com/zwirky/items/3a0a07480f672624ae02
+
+OBJECT ORIENTED 10YEARS
+https://qiita.com/tutinoco/items/6952b01e5fc38914ec4e
+https://qiita.com/tutinoco/items/7f7568cc7dbf7e2276c8
+https://qiita.com/cedretaber/items/45ad0580ab5eaa64c7ab#c%E3%81%AE%E5%A0%B4%E5%90%88
+
+DesignPattern
+https://qiita.com/irxground/items/d1f9cc447bafa8db2388
+
+LISP
+http://www.aoky.net/articles/leon_bambrick/lisp_truth.htm
 
 [SNS Login]------------------------------------------
 [SEE ALSO:https://diver.diveintocode.jp/textbooks/19]

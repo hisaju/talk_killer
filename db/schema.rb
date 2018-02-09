@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127164136) do
+ActiveRecord::Schema.define(version: 20180209074411) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -108,8 +108,13 @@ ActiveRecord::Schema.define(version: 20171127164136) do
     t.string   "provider",               default: "",    null: false
     t.string   "image_url"
     t.string   "avatar"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

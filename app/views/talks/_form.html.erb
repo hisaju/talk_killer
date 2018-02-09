@@ -27,10 +27,6 @@
     <%= f.label :対応期限 %><br>
     <%= f.date_field :due_date %>
   </div>
-  <div class="field">
-    関係者<br>
-    <%= f.select :templates, Talk.templates.keys.to_a, {}, class: "form-control" %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   #[TODO]add confirmable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         #:confirmable,
-         :omniauthable
+         :confirmable, :omniauthable
          
   mount_uploader :avatar, AvatarUploader
   
