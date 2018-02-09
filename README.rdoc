@@ -4,6 +4,9 @@ heroku config:set SENDGRID_USERNAME=app87770625@heroku.com
 heroku config:set SENDGRID_PASSWORD=eehretx67341
 
 #confirmed_at NOW()
+devise/mailerの日本語化
+
+-サインアップ後のメール送信の通知
 
 https://stackoverflow.com/questions/7613069/undefined-method-new-confirmation-path-confirmation-module-devise-mongoid
 

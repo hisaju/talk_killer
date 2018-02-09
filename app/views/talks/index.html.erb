@@ -36,9 +36,11 @@
               <div class="label label-info"><%= '要約あり' %></div>
             <% end %>
         </td>
-        <td>&nbsp;<%= link_to '', talk, class: "fa fa-file-text-o"%></td>
-        <td>&thinsp;<%= link_to '', edit_talk_path(talk), class: "fa fa-pencil-square-o" %></td>
-        <td>&thinsp;<%= link_to '', talk, method: :delete, class: "fa fa-trash-o",data: { confirm: 'Are you sure?' } %></td>
+          <td>&nbsp;<%= link_to '', talk, class: "fa fa-file-text-o"%></td>
+        <% if current_user.id == talk.user.id %> 
+          <td>&thinsp;<%= link_to '', edit_talk_path(talk), class: "fa fa-pencil-square-o" %></td>
+          <td>&thinsp;<%= link_to '', talk, method: :delete, class: "fa fa-trash-o",data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

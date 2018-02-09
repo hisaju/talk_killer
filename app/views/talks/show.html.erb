@@ -63,6 +63,7 @@
     <%= render partial: 'summaries/form', locals: { summary: @summary,     talk: @talk } %>
   <% end %>
 </div>
-
+<% if current_user.id == @talk.user.id %> 
 <%= link_to '内容を編集', edit_talk_path(@talk) %> |
+<% end %>
 <%= link_to '一覧に戻る', talks_path %>

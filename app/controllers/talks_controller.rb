@@ -24,6 +24,7 @@ class TalksController < ApplicationController
 
   def create
     @talk = Talk.new(talk_params)
+    @talk.user_id = current_user.id
 
     respond_to do |format|
       if @talk.save
