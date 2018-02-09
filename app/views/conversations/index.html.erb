@@ -4,7 +4,7 @@
       <h2>メッセージ一覧</h2>
     </thead>
     <tbody>
-    <% if Message.count == 0 %><%= 'There is No Message' %><% end %>
+    <% if Message.count == 0 %><%= 'メッセージはありません' %><% end %>
       <% @conversations.each do |conversation| %>
         <td>
           <% if conversation.target_user(current_user).present? %>

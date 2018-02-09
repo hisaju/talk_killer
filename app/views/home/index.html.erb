@@ -60,7 +60,7 @@
   <% end %>
 <h3>メッセージ一覧</h3></br>
 　<% if Message.count == 0 %>
-　  <%= 'There is No Message' %>
+　  <%= 'メッセージはありません' %>
 　<% else %>
     <% Message.all.each do |message| %>
       <td><%= message.user.name %></td>
@@ -72,7 +72,7 @@
   <% User.all.each do |user| %>
     <td><%= profile_img(user) %></td>
     <td><%= user.name %>
-　  <% if user.id == current_user.id %><%= '← Your Account!' %><% end %>
+　  <% if user.id == current_user.id %><%= '← あなたのアカウントです' %><% end %>
     </td>
     </br>
   <% end %>

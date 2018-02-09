@@ -18,6 +18,16 @@ https://stackoverflow.com/questions/7613069/undefined-method-new-confirmation-pa
 -TopPage Limit
 
 
+NoMethodError at /users/sign_up
+undefined method `[]=' for nil:NilClass
+
+class Users::RegistrationsController < Devise::RegistrationsController
+  def build_resource(hash=nil)
+    hash[:uid] = User.create_unique_string
+    super
+  end
+end
+
 == README
 - HTML,CSS,Bootstrapを使用して、現実のGithub issueに似せたデザインにすること
 - Home画面があること
