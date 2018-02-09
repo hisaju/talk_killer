@@ -2,16 +2,16 @@
 
 <p>
   <td>
-     <% if @task.status == 'urgent' %>
+     <% if @task.status == '緊急' %>
        <div class="label label-danger" ><%='緊急'%></div>
      <% end %>
-     <% if @task.status == 'important' %>
+     <% if @task.status == '重要' %>
        <div class="label label-warning"><%='重要'%></div>
      <% end %>
-     <% if @task.status == 'todo' %>
+     <% if @task.status == 'なるはや' %>
        <div class="label label-primary"><%='なるはや'%></div>
      <% end %>
-     <% if @task.status == 'someday' %>
+     <% if @task.status == 'いつか' %>
        <div class="label label-default" ><%='いつか'%></div>
      <% end %>
   </td>
