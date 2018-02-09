@@ -1,16 +1,57 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  [<%= @talk.status %>] <%= @talk.title %> </br>
+          <td>
+          <% if @talk.status == '緊急' %>
+            <div class="label label-danger" ><%='緊急 '%></div>
+          <% end %>
+          <% if @talk.status == '重要' %>
+            <div class="label label-warning"><%='重要 '%></div>
+          <% end %>
+          <% if @talk.status == '提案' %>
+            <div class="label label-primary"><%='提案 '%></div>
+          <% end %>
+          <% if @talk.status == '告知' %>
+            <div class="label label-info"   ><%='告知 '%></div>
+          <% end %>
+          <% if @talk.status == '解決' %>
+            <div class="label label-success"><%='解決 '%></div>
+          <% end %>
+        </td>
+  &thinsp;<%= @talk.title %> </br>
+    <div class="label label-default">
+    関係者
+  </div>
+  <% if @talk.status == '重要' %>
+      &thinsp;グループA
+  <% end %>
+  
+  <% if @talk.status == '提案' %>
+      &thinsp;グループB
+  <% end %>
+  <% if @talk.status == '緊急' %>
+      &thinsp;全員 
+  <% end %>
+  <% if @talk.status == '告知' %>
+      &thinsp;全員 
+  <% end %>
+  <% if @talk.status == '解決' %>
+      &thinsp;全員 
+  <% end %>
+  <div class="label label-default">
+    対応期限
+  </div>
   <% if @talk.due_date.nil? %>
-    [対応期限] なし
+    &thinsp;なし
   <% else %>
-    [対応期限] <%= @talk.due_date %></td>
+    &thinsp;<%= @talk.due_date %></td>
   <% end %>
 </p>
-
 <p>
-  <strong>内容:</strong>
+   <div class="label label-default">
+    内容
+  </div>
+  </br>
   <%= @talk.content %>
 </p>
 
@@ -31,7 +72,9 @@
 </div>
 
 <div id="summaries_area">
-  [要約]
+  <div class="label label-info">
+    要約
+  </div>
   <%= render partial: 'summaries/index',  locals: { summaries: @summaries, talk: @talk } %>
   </div>
   <% if @talk.summaries.first.id.nil? %>
