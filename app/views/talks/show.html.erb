@@ -1,43 +1,23 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-          <td>
-          <% if @talk.status == '緊急' %>
-            <div class="label label-danger" ><%='緊急 '%></div>
-          <% end %>
-          <% if @talk.status == '重要' %>
-            <div class="label label-warning"><%='重要 '%></div>
-          <% end %>
-          <% if @talk.status == '提案' %>
-            <div class="label label-primary"><%='提案 '%></div>
-          <% end %>
-          <% if @talk.status == '告知' %>
-            <div class="label label-info"   ><%='告知 '%></div>
-          <% end %>
-          <% if @talk.status == '解決' %>
-            <div class="label label-success"><%='解決 '%></div>
-          <% end %>
-        </td>
+  <td>
+    <% if @talk.status == '緊急' %>
+      <div class="label label-danger" ><%='緊急 '%></div>
+    <% end %>
+    <% if @talk.status == '重要' %>
+      <div class="label label-warning"><%='重要 '%></div>
+    <% end %>
+    <% if @talk.status == '提案' %>
+      <div class="label label-primary"><%='提案 '%></div>
+    <% end %>
+    <% if @talk.status == '告知' %>
+      <div class="label label-info"   ><%='告知 '%></div>
+    <% end %>
+    <% if @talk.status == '解決' %>
+      <div class="label label-success"><%='解決 '%></div>
+    <% end %>
+  </td>
   &thinsp;<%= @talk.title %> </br>
-    <div class="label label-default">
-    関係者
-  </div>
-  <% if @talk.status == '重要' %>
-      &thinsp;グループA
-  <% end %>
-  
-  <% if @talk.status == '提案' %>
-      &thinsp;グループB
-  <% end %>
-  <% if @talk.status == '緊急' %>
-      &thinsp;全員 
-  <% end %>
-  <% if @talk.status == '告知' %>
-      &thinsp;全員 
-  <% end %>
-  <% if @talk.status == '解決' %>
-      &thinsp;全員 
-  <% end %>
   <div class="label label-default">
     対応期限
   </div>
