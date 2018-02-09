@@ -1,24 +1,26 @@
 <div class="container">
- UserList
-   <% @users.each do |user| %>
-      <div class="container-child col-md-2 col-sm-4 col-xs-6">
+  <h2>ユーザー一覧</h2>
+  <% @users.each do |user| %>
+      <div class="container-child wrapper col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
         <%= link_to user_path(user) do %>
-          <div class="container-child col-md-2 col-sm-2 col-xs-3 ">
-              <%= profile_img(user) %></div>
+          <div class="container-child"><%= profile_img(user) %></div>
         <% end %>
       </div>
-         <div class="item">
+       <div>
+         <div class="item col-md-4 col-sm-2">
            <%= link_to user.name, user %>
+           </b>
            <%= user.email %>
          </div>
-         <div class="item">
+         <div class="item col-md-4 col-sm-1 ">
            <% if user.id != current_user.id %>
-             <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>
+                 <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), 
+                 class: 'btn btn-large btn-sm btn-success' ,method: 'post'%>
            <% else %>
-              <p>↑ Your Account</p>
+              <p>あなたのアカウントです</p>
            <% end %>
          </div>
-       
+       </div>
        </br>
   <% end %>
 </div>
