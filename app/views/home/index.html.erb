@@ -59,12 +59,14 @@
     </br>
   <% end %>
 <h3>メッセージ一覧</h3></br>
-　<% if Message.count == 0 %><%= 'There is No Message' %><% end %>
-　</br>
-  <% Message.all.each do |message| %>
-    <td><%= message.user.name %></td>
-    <td><%= message.body %></td>
-    </br>
+　<% if Message.count == 0 %>
+　  <%= 'There is No Message' %>
+　<% else %>
+    <% Message.all.each do |message| %>
+      <td><%= message.user.name %></td>
+      <td><%= message.body %></td>
+      </br>
+    <% end %>
   <% end %>
 <h3>ユーザー一覧</h3></br>
   <% User.all.each do |user| %>

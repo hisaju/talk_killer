@@ -3,6 +3,8 @@
 heroku config:set SENDGRID_USERNAME=app87770625@heroku.com
 heroku config:set SENDGRID_PASSWORD=eehretx67341
 
+#confirmed_at NOW()
+
 https://stackoverflow.com/questions/7613069/undefined-method-new-confirmation-path-confirmation-module-devise-mongoid
 
 -current_user
