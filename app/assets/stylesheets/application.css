@@ -17,3 +17,19 @@
   color: black;
   padding-top: 10px;
 }
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+ 
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover,
+.navbar-inverse .brand:focus,
+.navbar-inverse .nav > li > a:focus {
+  color: #aaaaaa;
+}
+ 
+.navbar-inverse .brand {
+  color: #ffffff;
+}
