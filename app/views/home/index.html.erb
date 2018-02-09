@@ -1,5 +1,6 @@
-<h3>Talks</h3></br>
-　<% if Talk.count == 0 %><%= 'There is No Talk' %><% end %> 
+<h3>トーク一覧</h3>
+　<% if Talk.count == 0 %><%= '話題はありません' %><% end %>
+  </br>
   <% Talk.all.each do |talk| %>
     <td>
       <% if talk.status == '緊急' %>
@@ -26,23 +27,24 @@
         </div>
       <% end %>
     </td>
-    <td><div class="label label-info"><%= '要約あり' unless talk.summaries.nil? %></div></td>
+    <td><div class="label label-info"><%= '要約あり' unless talk.summaries.first.nil? %></div></td>
     </br>
   <% end %>
-<h3>Tasks</h3></br>
-　<% if Task.count == 0 %><%= 'There is No Task' %><% end %> 
+<h3>タスク一覧</h3></br>
+　<% if Task.count == 0 %><%= 'タスクはありません' %><% end %>
+  </br>
   <% Task.all.each do |task| %>
     <td>
-      <% if task.status == 'urgent' %>
+      <% if task.status == '緊急' %>
         <div class="label label-danger" ><%='緊急'%></div>
       <% end %>
-      <% if task.status == 'important' %>
+      <% if task.status == '重要' %>
         <div class="label label-warning"><%='重要'%></div>
       <% end %>
-      <% if task.status == 'todo' %>
+      <% if task.status == 'なるはや' %>
         <div class="label label-primary"><%='なるはや'%></div>
       <% end %>
-      <% if task.status == 'someday' %>
+      <% if task.status == 'いつか' %>
         <div class="label label-default" ><%='いつか'%></div>
       <% end %>
     </td>
@@ -56,14 +58,15 @@
     </td>
     </br>
   <% end %>
-<h3>Messages</h3></br>
-　<% if Message.count == 0 %><%= 'There is No Message' %><% end %> 
+<h3>メッセージ一覧</h3></br>
+　<% if Message.count == 0 %><%= 'There is No Message' %><% end %>
+　</br>
   <% Message.all.each do |message| %>
     <td><%= message.user.name %></td>
     <td><%= message.body %></td>
     </br>
   <% end %>
-<h3>Users</h3></br>
+<h3>ユーザー一覧</h3></br>
   <% User.all.each do |user| %>
     <td><%= profile_img(user) %></td>
     <td><%= user.name %>
