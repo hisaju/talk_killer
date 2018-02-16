@@ -59,13 +59,14 @@
     </br>
   <% end %>
 <h3>メッセージ一覧</h3></br>
-　<% if Message.count == 0 %>
-　  <%= 'メッセージはありません' %>
+　<% if Message.all.find_by(user_id: current_user.id).nil? %><%= 'あなたが送信したメッセージはありません' %>
 　<% else %>
     <% Message.all.each do |message| %>
-      <td><%= message.user.name %></td>
-      <td><%= message.body %></td>
-      </br>
+      <% if message.user_id == current_user.id %>
+        <td>to:<%= message.user.name %></td>
+        <td><%= message.body %></td>
+        </br>
+      <% end %>
     <% end %>
   <% end %>
 <h3>ユーザー一覧</h3></br>
