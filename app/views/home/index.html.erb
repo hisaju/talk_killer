@@ -1,7 +1,7 @@
 <h3>トーク一覧</h3>
 　<% if Talk.count == 0 %><%= '話題はありません' %><% end %>
   </br>
-  <% Talk.all.each do |talk| %>
+  <% Talk.all[0,9].each do |talk| %>
     <td>
       <% if talk.status == '緊急' %>
         <div class="label label-danger" ><%='緊急'%></div>
@@ -33,7 +33,7 @@
 <h3>タスク一覧</h3></br>
 　<% if Task.count == 0 %><%= 'タスクはありません' %><% end %>
   </br>
-  <% Task.all.each do |task| %>
+  <% Task.all[0,9].each do |task| %>
     <td>
       <% if task.status == '緊急' %>
         <div class="label label-danger" ><%='緊急'%></div>
@@ -62,17 +62,18 @@
 </br>
 <% if Message.all.find_by(user_id: current_user.id).nil? %>
 <%= 'あなたが送信したメッセージはありません' %>
-<% else %><% Message.all.each do |message| %>
+<% else %><% Message.all.each do |message,i| %>
 <% if message.user_id == current_user.id %>
 </td>
 <td>to:<%= User.find(Conversation.find(message.conversation_id).recipient_id).name %></td>
 <td><%= message.body %>
 </br>
-      <% end %>
+<% break if i== 9 %>
+<% end %>
     <% end %>
   <% end %>
 <h3>ユーザー一覧</h3></br>
-  <% User.all.each do |user| %>
+  <% User.all[0,9].each do |user| %>
     <td><%= profile_img(user) %></td>
     <td><%= user.name %>
 　  <% if user.id == current_user.id %><%= '← あなたのアカウントです' %><% end %>
