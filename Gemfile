@@ -43,6 +43,7 @@ group :development, :test do
 
   gem 'pry-rails'
   gem 'better_errors'
+  gem 'sqlite3', group: :development
 end
 
 group :development do
@@ -54,7 +55,6 @@ end
 gem 'twitter-bootstrap-rails'
 gem 'rails-i18n'
 gem 'rails_12factor', group: :production
-#gem 'sqlite3', group: :development
 gem 'devise'
 gem 'faker'
 gem 'rails_admin'
