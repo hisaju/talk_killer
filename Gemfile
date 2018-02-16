@@ -54,8 +54,6 @@ end
 gem 'twitter-bootstrap-rails'
 gem 'rails-i18n'
 gem 'rails_12factor', group: :production
-
-gem 'rails_12factor', group: :production
 #gem 'sqlite3', group: :development
 gem 'devise'
 gem 'faker'
