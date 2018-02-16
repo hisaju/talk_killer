@@ -63,6 +63,6 @@ class TalksController < ApplicationController
     end
 
     def talk_params
-      params.require(:talk).permit(:title, :content, :status, :due_date)
+      params.require(:talk).permit(:title, :content, :status, :due_date, :picture)
     end
 end

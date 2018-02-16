@@ -26,5 +26,7 @@
   <% end %>
 </p>
 
+<div><%= image_tag @task.picture if @task.picture? %></div></br>
+
 <%= link_to '内容を編集', edit_task_path(@task) %> |
 <%= link_to '一覧に戻る', tasks_path %>

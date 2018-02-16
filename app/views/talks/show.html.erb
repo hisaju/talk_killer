@@ -45,6 +45,8 @@
   <%= @talk.updated_at.strftime("%y/%m/%d %p %l:%M") %>
 </p>
 
+<div><%= image_tag @talk.picture if @talk.picture? %></div></br>
+
 <div id="comments_area">
   <%= render partial: 'comments/index', locals: { replies: @replies, comments: @comments, talk: @talk } %>
 </div>

@@ -5,6 +5,7 @@ class Talk < ActiveRecord::Base
     has_many :comments,  dependent: :destroy
     has_many :replies,   dependent: :destroy
     has_many :summaries, dependent: :destroy
+    mount_uploader :picture, PictureUploader
     enum status:    %i(緊急 重要 提案 告知 解決)
     enum templates: %i(全員 グループA グループB グループC)
 end

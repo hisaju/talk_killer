@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209074411) do
+ActiveRecord::Schema.define(version: 20180216022546) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20180209074411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.string   "picture"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 20180209074411) do
     t.boolean  "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "picture"
   end
 
   create_table "users", force: :cascade do |t|

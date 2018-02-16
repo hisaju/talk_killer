@@ -23,6 +23,10 @@
     <%= f.label :対応期限 %><br>
     <%= f.date_select :due_date %>
   </div>
+  
+  <span class="picture">
+    <%= f.file_field :picture %>
+  </span>
 
   <div class="actions">
     <%= f.submit %>
