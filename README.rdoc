@@ -1,7 +1,27 @@
 -confirmable
 -mailer
-heroku config:set SENDGRID_USERNAME=app87770625@heroku.com
-heroku config:set SENDGRID_PASSWORD=eehretx67341
+heroku login
+heroku create appName
+heroku destroy
+
+heroku config:set SENDGRID_USERNAME=app88362431@heroku.com,app87770625@heroku.com
+heroku config:set SENDGRID_PASSWORD=f5231te55881,eehretx67341
+heroku config:add FACEBOOK_ID_PRODUCTION=
+heroku config:add FACEBOOK_SECRET_PRODUCTION=
+heroku config:add TWITTER_ID_PRODUCTION=
+heroku config:add TWITTER_SECRET_PRODUCTION=
+
+config/environments/production.rb
+config.assets.compile = false -->true
+
+rake assets:precompile RAILS_ENV=production
+
+heroku addons:create sendgrid:starter
+
+git push heroku master
+Avater_Uploader,Picture_Uploader
+ storage :file
+heroku run rake db:migrate RAILS_ENV=production
 
 #confirmed_at NOW()
 devise/mailerの日本語化

@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     registrations:      "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  resources :users, only: %i[index show]
+  resources :users, only: [:index, :show]
   resources :tasks
   resources :talks do
     resources :comments do
-      resources :replies, only: %i[index create edit update destroy]
+      resources :replies, only: [:index, :create, :edit, :update, :destroy]
     end
     resources :summaries
   end
